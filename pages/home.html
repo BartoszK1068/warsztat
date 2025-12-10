@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warsztat | Strona główna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --bg-start: #0f172a;
+            --bg-end: #111827;
+            --panel: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.08);
+            --accent: #7dd3fc;
+            --muted: #cbd5e1;
+        }
+        body {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: radial-gradient(circle at 20% 20%, rgba(125, 211, 252, 0.08), transparent 30%),
+                        radial-gradient(circle at 80% 0%, rgba(52, 211, 153, 0.1), transparent 35%),
+                        linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        h1, h2, h3, h4, h5, h6,
+        p, li, .card-text {
+            color: #e8edf7;
+        }
+        .navbar {
+            background: transparent;
+        }
+        .navbar a {
+            color: #e2e8f0 !important;
+        }
+        .card {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+        }
+        .card-title {
+            margin-bottom: 0.25rem;
+            color: #e2e8f0;
+        }
+        .badge-green {
+            background: rgba(52, 211, 153, 0.2);
+            color: #a7f3d0;
+            border: 1px solid rgba(52, 211, 153, 0.4);
+        }
+        .service-card {
+            border: 1px solid var(--border);
+            transition: all 0.15s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .service-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 12px 30px rgba(125, 211, 252, 0.18);
+        }
+        .service-card .fw-semibold {
+            color: #e8edf7;
+        }
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(125, 211, 252, 0.12);
+            color: #e0f2fe;
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+        }
+        .gallery img {
+            object-fit: cover;
+            height: 420px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #38bdf8, #34d399);
+            border: none;
+            color: #0b1224;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+        }
+        .btn-outline-primary {
+            color: #e2e8f0;
+            border-color: var(--accent);
+        }
+        .btn-outline-primary:hover {
+            background: var(--accent);
+            color: #0b1224;
+            border-color: var(--accent);
+        }
+        .text-secondary {
+            color: #e8edf7 !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" href="#">Warsztat PRO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="#">Zgłoszenia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Usługi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">O nas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <nav aria-label="breadcrumb" class="mb-3">
+        </nav>
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between mb-3">
+                            <div>
+                                <h3 class="card-title fw-semibold mb-1">Warsztat PRO</h3>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Mapa warsztatu" class="img-fluid rounded">
+                        </div>
+                        <ul class="list-unstyled mb-3 text-secondary">
+                            <li class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Wołoska 26, 02-675 Warszawa</li>
+                            <li class="mb-2"><i class="bi bi-clock-history text-primary me-2"></i><strong>Pon-Pt:</strong> 8:00-21:00, <strong>Sob:</strong> 8:00-18:00</li>
+                        </ul>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary w-50">Zapytaj o wycenę</button>
+                            <button class="btn btn-primary w-50">Umów się na wizytę</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h4 class="mb-0">Świadczone usługi</h4>
+                            <i class="bi bi-chevron-down text-muted"></i>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-life-preserver"></i></div>
+                                        <div class="fw-semibold">Wymiana opon</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-house-gear"></i></div>
+                                        <div class="fw-semibold">Hotel opon</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-tools"></i></div>
+                                        <div class="fw-semibold">Naprawa opon</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-wrench-adjustable"></i></div>
+                                        <div class="fw-semibold">Geometria kół</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-thermometer-snow"></i></div>
+                                        <div class="fw-semibold">Klimatyzacja</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-exclamation-octagon"></i></div>
+                                        <div class="fw-semibold">Hamulce</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-battery-charging"></i></div>
+                                        <div class="fw-semibold">Akumulatory</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-clipboard-check"></i></div>
+                                        <div class="fw-semibold">Przeglądy</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="service-card card h-100 p-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="service-icon"><i class="bi bi-lightning-charge"></i></div>
+                                        <div class="fw-semibold">Diagnostyka</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="row g-4 mt-4">
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <h4 class="mb-0">O nas</h4>
+                            <i class="bi bi-chevron-down text-muted"></i>
+                        </div>
+                        <p class="text-secondary mb-3">Warsztat działa od 2000 roku. Jesteśmy jedynym w mieście serwisem, który łączy mechanikę, elektrykę i diagnostykę komputerową w jednym miejscu. Obsługujemy floty i klientów indywidualnych, zapewniając szybkie terminy i transparentne statusy napraw.</p>
+                        <ul class="list-unstyled text-secondary mb-0">
+                            <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Stanowiska do obsługi opon, klimatyzacji i geometrii</li>
+                            <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Pełna historia pojazdu i zdjęcia z napraw</li>
+                            <li><i class="bi bi-check-circle text-primary me-2"></i>Powiadomienia SMS i szybkie akceptacje kosztorysu</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <h4 class="mb-0">Zdjęcia</h4>
+                            <i class="bi bi-chevron-down text-muted"></i>
+                        </div>
+                        <div id="galleryCarousel" class="carousel slide gallery" data-bs-ride="carousel">
+                            <div class="carousel-inner rounded">
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='pics/warszt.jpg') }}" class="d-block w-100" alt="Warsztat z zewnątrz">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://images.unsplash.com/photo-1515923152115-758a6b16a8d8?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="Hala serwisowa">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="Stanowisko naprawcze">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="d-flex gap-2 mt-3">
+                            <button class="btn btn-outline-primary w-50">Zapytaj o wycenę</button>
+                            <button class="btn btn-primary w-50">Umów się na wizytę</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
