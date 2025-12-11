@@ -107,7 +107,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto gap-lg-3">
-                    <li class="nav-item"><a class="nav-link" href="#">Zgłoszenia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('zgloszenia') }}">Zgłoszenia</a></li>
+                    {% if current_role == 'admin' %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_zgloszenia') }}">Panel admin</a></li>
+                    {% endif %}
                     <li class="nav-item"><a class="nav-link" href="#">Usługi</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">O nas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
