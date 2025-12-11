@@ -37,6 +37,26 @@ def create_table_utworzone_konta(conn: sqlite3.Connection) -> None:
     """
     conn.execute(sql)
 
+def create_table_zgloszenia(conn: sqlite3.Connection) -> None:
+    """
+    Tworzy tabelę bieżących zgłoszeń, jeśli nie istnieje.
+    """
+    sql = """
+    CREATE TABLE IF NOT EXISTS zgloszenia (
+        id               INTEGER PRIMARY KEY AUTOINCREMENT,
+        data_godzina     TEXT NOT NULL DEFAULT (datetime('now')),
+        imie             TEXT NOT NULL,
+        nazwisko         TEXT NOT NULL,
+        login            TEXT,            -- powiązanie z kontem (może być NULL)
+        tel              TEXT NOT NULL,
+        termin           TEXT NOT NULL,   -- np. '2025-12-10 14:30'
+        w_jakiej_sprawie TEXT NOT NULL,
+        FOREIGN KEY (login) REFERENCES utworzone_konta(login)
+            ON UPDATE CASCADE
+            ON DELETE SET NULL
+    );
+    """
+    conn.execute(sql)
 
 def init_db(db_path: Optional[str] = None) -> None:
     """
@@ -52,9 +72,11 @@ def init_db(db_path: Optional[str] = None) -> None:
     conn = get_connection(path)
     try:
         create_table_utworzone_konta(conn)
+        create_table_zgloszenia(conn)
         conn.commit()
     finally:
         conn.close()
+
 
 
 
